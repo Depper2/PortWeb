@@ -1,0 +1,32 @@
+html.intro-wait{background:#000}
+html.intro-wait body>:not(.intro-ui){visibility:hidden}
+html.intro-wait body>:not(.intro-ui),
+html.intro-wait body>:not(.intro-ui) *,
+html.intro-wait body>:not(.intro-ui)::before,
+html.intro-wait body>:not(.intro-ui)::after,
+html.intro-wait body>:not(.intro-ui) *::before,
+html.intro-wait body>:not(.intro-ui) *::after{animation-play-state:paused!important}
+
+.intro-ui{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:#000;color:#fff;
+  font-family:var(--mono,"Courier New",monospace);transition:opacity .7s}
+.intro-ui.out{opacity:0}
+
+.intro-start{all:unset;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;gap:26px;padding:32px;cursor:pointer;text-align:center}
+.intro-start:focus-visible{outline:2px solid #fff;outline-offset:6px}
+.intro-heart{display:block;width:84px;height:74px;transition:transform .6s cubic-bezier(.6,0,.9,.4)}
+.intro-heart svg{display:block;width:100%;height:100%}
+.intro-heart.off{opacity:0}
+.intro-start:not(.go) .intro-heart{animation:introIdle 1.4s steps(1) infinite}
+@keyframes introIdle{50%{opacity:.25}}
+.intro-text{font-size:1.1rem;letter-spacing:.04em;transition:opacity .2s}
+.intro-start.go .intro-text{opacity:0}
+
+.snd{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:60;padding:8px 14px;
+  background:rgba(5,5,10,.88);color:#E9ECF5;border:1px solid #FF1F3D;font:inherit;font-family:var(--mono,"Courier New",monospace);font-size:.9rem;cursor:pointer}
+.snd:hover{color:#00F0FF;border-color:#00F0FF}
+.snd:focus-visible{outline:2px solid #00F0FF;outline-offset:3px}
+
+@media (prefers-reduced-motion:reduce){
+  .intro-start:not(.go) .intro-heart{animation:none}
+  .intro-heart{transition:none}
+}

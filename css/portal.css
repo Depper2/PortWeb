@@ -1,0 +1,98 @@
+/* 1. THEME: test chamber (light panels, orange + blue portals)*/
+:root{
+  --orange:#FF9A00; --blue:#1EA0FF; --ink:#1B1D21; --tile:#E7EAED; --line:#CBD0D6; --muted:#5A606B;
+  --hdr:56px;
+  --head:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --body:"Barlow","Segoe UI",system-ui,sans-serif;
+}
+
+/* 2. BASE STYLES (tiled wall background)*/
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;color:var(--ink);font:1.05rem/1.5 var(--body);background-color:var(--tile);
+  background-image:linear-gradient(var(--line) 2px,transparent 2px),linear-gradient(90deg,var(--line) 2px,transparent 2px);background-size:140px 140px;
+  padding-bottom:env(safe-area-inset-bottom,0px)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* 3. TOP BAR*/
+.top{position:sticky;top:0;z-index:40;padding-top:env(safe-area-inset-top,0px);background:var(--ink);border-bottom:4px solid var(--orange)}
+.top .wrap{display:flex;align-items:center;min-height:var(--hdr)}
+.back{color:var(--orange);text-decoration:none;font:700 1.1rem var(--head);letter-spacing:.04em;padding:8px 0}
+.back:hover{color:#fff}
+
+/* 4. HERO (title between an orange and a blue portal)*/
+.hero{padding:56px 0 28px}
+.hero-row{display:flex;align-items:center;gap:clamp(12px,3vw,28px)}
+.hero h1{margin:0;font:700 clamp(2.6rem,9vw,5.5rem)/1 var(--head);text-transform:uppercase;letter-spacing:.01em}
+.hero p{margin:14px 0 0;color:var(--muted);max-width:52ch}
+.portal{flex:none;width:clamp(22px,4vw,34px);height:clamp(52px,9vw,78px);border-radius:50%;border:5px solid var(--orange);
+  box-shadow:0 0 18px var(--orange),inset 0 0 12px var(--orange);animation:portal 3.2s ease-in-out infinite}
+.portal.blue{border-color:var(--blue);box-shadow:0 0 18px var(--blue),inset 0 0 12px var(--blue);animation-delay:-1.6s}
+@keyframes portal{50%{transform:scaleY(1.07);filter:brightness(1.25)}}
+
+/* 5. CERTIFICATE GRID (9 cards)*/
+main{padding-bottom:64px}
+.certs{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;list-style:none;margin:0;padding:0}
+@media (max-width:900px){.certs{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.certs{grid-template-columns:1fr}}
+.cert{display:block;width:100%;padding:12px;background:#fff;border:2px solid var(--ink);border-radius:6px;cursor:pointer;
+  text-align:left;font:inherit;color:inherit;transition:box-shadow .2s,transform .2s}
+.cert:hover,.cert:focus-visible{transform:translateY(-4px);box-shadow:0 0 0 3px var(--orange),0 0 28px rgba(255,154,0,.6)}
+.cert img{display:block;width:100%;aspect-ratio:1200/850;object-fit:cover;border:1px solid var(--line)}
+.cert b{display:block;margin-top:10px;font:700 1.3rem/1.2 var(--head)}
+.cert small{color:var(--muted)}
+
+/* 6. AI ASSISTANT (fixed corner: character + speech bubble) */
+.glados{position:fixed;z-index:70;top:calc(var(--hdr) + 18px + env(safe-area-inset-top,0px));right:14px;width:min(250px,calc(100vw - 28px));
+  display:flex;flex-direction:column;align-items:flex-end;gap:10px;pointer-events:none;
+  transition:top .7s cubic-bezier(.2,.8,.2,1),right .7s cubic-bezier(.2,.8,.2,1),width .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
+.feed{width:112px;padding:10px;background:radial-gradient(circle at 50% 40%,#3a3d44,#15161a);border:2px solid var(--ink);border-bottom:5px solid var(--orange);
+  border-radius:10px;transition:width .7s cubic-bezier(.2,.8,.2,1);box-shadow:0 6px 20px rgba(0,0,0,.3)}
+.char{display:block;width:100%;height:auto}
+.eye{animation:eye 2.4s ease-in-out infinite}
+@keyframes eye{50%{opacity:.55}}
+.glados.speaking .eye{animation-duration:.5s}
+.glados.speaking .feed{border-bottom-color:#fff}
+.bubble{position:relative;width:100%;padding:12px 14px;background:var(--ink);color:#fff;border-left:5px solid var(--orange);border-radius:4px;
+  font-size:1rem;line-height:1.45;box-shadow:0 8px 24px rgba(0,0,0,.28)}
+.bubble::before{content:"";position:absolute;right:46px;top:-8px;border:8px solid transparent;border-top:0;border-bottom-color:var(--ink)}
+.who{display:block;margin-bottom:4px;color:var(--orange);font:700 .85rem var(--head);letter-spacing:.08em}
+.line{position:relative}
+.ghost{visibility:hidden}                     /* full text, invisible: keeps the bubble from jumping while typing */
+.typed{position:absolute;inset:0}
+.glados.speaking .typed::after{content:"_";color:var(--orange);animation:blink .6s step-end infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* zoomed state: she moves to the middle right and gets bigger */
+.glados.big{top:50%;transform:translateY(-50%);right:3vw;width:min(380px,calc(100vw - 28px))}
+.glados.big .feed{width:190px}
+.glados.big .bubble{font-size:1.1rem;pointer-events:auto}
+
+/* 7. ZOOM VIEW (certificate opens big)*/
+.modal{position:fixed;inset:0;z-index:60;background:rgba(12,14,18,.88);opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s}
+.modal.open{opacity:1;visibility:visible}
+.zoom{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:72px min(470px,46vw) 40px 40px}
+.zoom img{display:block;max-width:100%;max-height:100%;background:#fff;box-shadow:0 0 0 3px var(--blue),0 0 60px rgba(30,160,255,.6)}
+.close{position:fixed;z-index:80;top:calc(14px + env(safe-area-inset-top,0px));left:14px;padding:10px 18px;background:var(--ink);color:var(--orange);
+  border:2px solid var(--orange);border-radius:4px;font:700 1.05rem var(--head);letter-spacing:.05em;cursor:pointer;
+  opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s}
+.modal.open ~ .close{opacity:1;visibility:visible}
+.close:hover{background:var(--orange);color:var(--ink)}
+
+/* 8. MOBILE (assistant becomes a bar docked at the bottom) */
+@media (max-width:720px){
+  main{padding-bottom:170px}
+  .glados,.glados.big{top:auto;bottom:0;left:0;right:0;width:auto;transform:none;flex-direction:row;align-items:flex-start;gap:10px;
+    padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));background:rgba(231,234,237,.97);border-top:4px solid var(--orange);pointer-events:auto}
+  .feed,.glados.big .feed{width:72px;flex:none;padding:6px}
+  .glados.big .feed{width:92px}
+  .bubble,.glados.big .bubble{flex:1;width:auto;max-height:34vh;overflow:auto;font-size:.95rem}
+  .bubble::before{display:none}
+  .zoom{padding:64px 14px calc(34vh + 40px)}
+}
+@media (max-width:560px){.hero h1{font-size:clamp(1.7rem,8vw,2.4rem)}.hero-row{gap:10px}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}

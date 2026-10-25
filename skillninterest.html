@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Skill and Interest</title>
+<script>document.documentElement.classList.add('js','booting')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/cyber.css">
+</head>
+<body>
+
+<!-- segment : intro boot screen (diagonal split, click to skip) -->
+<div class="bs" id="bs" aria-hidden="true">
+  <div class="bs-half bs-t"></div>
+  <div class="bs-half bs-b"></div>
+  <i class="bs-seam"></i>
+  <div class="bs-term">
+    <pre id="bsText"></pre>
+    <div class="bs-bar"><i id="bsFill"></i></div>
+    <span class="bs-skip">click to skip + enable sound</span>
+  </div>
+</div>
+
+<canvas id="rain" aria-hidden="true"></canvas>
+<div class="floor" aria-hidden="true"></div>
+<header class="top">
+  <div class="wrap">
+    <a class="back" href="index.html">Back</a>
+    <nav aria-label="Page sections">
+      <a href="#skill">Skill</a>
+      <a href="#interest">Interest</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section id="skill">
+    <div class="wrap">
+      <span class="boot" style="--n:34">&gt; access granted: skill + interest</span>
+      <h1 class="sec-title" data-text="SKILL">SKILL</h1>
+      <p class="sec-sub">What I code, create, and speak</p>
+
+      <div class="grid">
+        <article class="panel reveal"><div class="in">
+          <h3>Programming</h3>
+          <ul class="chips">
+            <li>Python</li><li>SQL</li><li>Java</li><li>C++</li><li>JavaScript</li><li>React.js</li>
+          </ul>
+        </div></article>
+        <article class="panel reveal"><div class="in">
+          <h3>Video editing / design</h3>
+          <ul class="chips">
+            <li>Canva</li><li>Figma</li><li>CapCut</li><li>DaVinci Resolve</li>
+          </ul>
+        </div></article>
+        <article class="panel reveal"><div class="in">
+          <h3>Language</h3>
+          <ul class="langs">
+            <li class="lang"><b>Indonesian</b><span>Native</span>
+              <div class="seg"><i class="on" style="--d:0"></i><i class="on" style="--d:1"></i><i class="on" style="--d:2"></i><i class="on" style="--d:3"></i><i class="on" style="--d:4"></i></div></li>
+            <li class="lang"><b>English</b><span>Professional working proficiency</span>
+              <div class="seg"><i class="on" style="--d:0"></i><i class="on" style="--d:1"></i><i class="on" style="--d:2"></i><i class="on" style="--d:3"></i><i style="--d:4"></i></div></li>
+            <li class="lang"><b>Japanese</b><span>Beginner</span>
+              <div class="seg"><i class="on" style="--d:0"></i><i style="--d:1"></i><i style="--d:2"></i><i style="--d:3"></i><i style="--d:4"></i></div></li>
+          </ul>
+        </div></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="interest">
+    <div class="wrap">
+      <h2 class="sec-title" data-text="INTEREST">INTEREST</h2>
+      <p class="sec-sub">What I do for fun and keep coming back to</p>
+
+      <div class="grid">
+
+        <!-- segment : hobbies -->
+        <article class="panel reveal"><div class="in">
+          <h3>Hobbies</h3>
+          <ul class="chips">
+            <li>Games</li><li>Editing</li><li>Programming</li><li>Design</li><li>Gym</li><li>Boxing</li>
+          </ul>
+        </div></article>
+
+        <article class="panel reveal"><div class="in">
+          <h3>Media I like</h3>
+          <ul class="list">
+            <li><b>Whiplash</b><span>Film</span></li>
+            <li><b>Fantastic Mr. Fox</b><span>Film</span></li>
+            <li><b>Loki</b><span>Series</span></li>
+          </ul>
+        </div></article>
+
+        <article class="panel reveal"><div class="in">
+          <h3>Books</h3>
+          <ul class="list">
+            <li><b>Metamorphosis</b><span>Franz Kafka</span></li>
+          </ul>
+        </div></article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- segment : footer with the back link -->
+<footer>
+  <div class="wrap"><a href="index.html">Back</a></div>
+</footer>
+
+<!-- segment : background music. The file must be named exactly audio/Cyber.mp3 (capital C) -->
+<audio id="bgm" src="audio/cyber.mp3" loop preload="auto"></audio>
+<button class="snd muted" id="snd" type="button" aria-pressed="false" aria-label="Toggle background music">
+  <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  <span class="snd-t">Sound off</span>
+</button>
+
+<script src="js/cyber.js"></script>
+</body>
+</html>

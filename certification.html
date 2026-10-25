@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Certification</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/portal.css">
+</head>
+<body>
+
+<!-- TOP BAR-->
+<header class="top">
+  <div class="wrap"><a class="back" href="index.html">Back</a></div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-row">
+        <span class="portal" aria-hidden="true"></span>
+        <h1>Certification</h1>
+        <span class="portal blue" aria-hidden="true"></span>
+      </div>
+      <p>Test results on file. Hover a certificate to get a comment, click one to inspect it.</p>
+    </div>
+  </section>
+
+  <!-- segment : certificates, 4 cards (newest first), each image is images/ + the certificate file name -->
+  <section>
+    <div class="wrap">
+      <ul class="certs">
+      <li><button class="cert" type="button" data-title="Ethereum Builder" data-desc="Certified Ethereum Builder credential issued by HackQuest on 18 February 2026, showing hands-on knowledge of building on Ethereum.">
+        <img src="documents/EtheriumBuilder - DG.png" alt="" loading="lazy"><b>Ethereum Builder</b><small>Click to inspect</small></button></li>
+      <li><button class="cert" type="button" data-title="Belajar Dasar Cloud dan Gen AI di AWS" data-desc="Dicoding course made with AWS, finished on 24 December 2025. It covers AWS cloud services, global infrastructure, security, pricing and the basics of AI and generative AI.">
+        <img src="documents/CloudandGenai - DG.png" alt="" loading="lazy"><b>Belajar Dasar Cloud dan Gen AI di AWS</b><small>Click to inspect</small></button></li>
+      <li><button class="cert" type="button" data-title="Belajar Dasar AI" data-desc="Dicoding beginner course on AI fundamentals, finished on 22 December 2025. It covers data for AI, machine learning and deep learning.">
+        <img src="documents/DasarAI - DG.png" alt="" loading="lazy"><b>Belajar Dasar AI</b><small>Click to inspect</small></button></li>
+      <li><button class="cert" type="button" data-title="Java Fundamentals" data-desc="Oracle Academy award for passing the Java Fundamentals final exam, received on 29 November 2024.">
+        <img src="documents/FinalsJavaFundalmental - DG .png" alt="" loading="lazy"><b>Java Fundamentals</b><small>Click to inspect</small></button></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<!-- ===== ZOOM VIEW (opened by JavaScript) ===== -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Certificate view">
+  <div class="zoom"><img id="zimg" alt=""></div>
+</div>
+<button class="close" id="close" type="button">Close</button>
+
+<aside class="glados" id="glados" aria-label="Assistant">
+  <div class="feed">
+    <img class="char" src="webasset/glados.png" alt="" onerror="this.hidden=true;document.getElementById('gfall').removeAttribute('hidden')">
+    <svg id="gfall" class="char" viewBox="0 0 120 160" aria-hidden="true" hidden>
+          <rect x="57" y="0" width="6" height="40" fill="#555"/><rect x="50" y="34" width="20" height="14" rx="3" fill="#3a3d44"/>
+          <path d="M22 84c0-24 16-38 38-38s38 14 38 38-16 36-38 36S22 108 22 84z" fill="#d9dde2" stroke="#8a9099" stroke-width="3"/>
+          <path d="M22 84c0-6 1-12 4-17l14 10-4 24-12-2c-2-5-2-10-2-15z" fill="#aeb4bc"/><path d="M98 84c0-6-1-12-4-17l-14 10 4 24 12-2c2-5 2-10 2-15z" fill="#aeb4bc"/>
+          <circle cx="60" cy="86" r="17" fill="#15161a" stroke="#6b717b" stroke-width="3"/><circle class="eye" cx="60" cy="86" r="9" fill="#FF9A00"/>
+          <path d="M44 122l-6 22M76 122l6 22" stroke="#555" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+  </div>
+  <div class="bubble">
+    <span class="who" id="who">GLaDOS</span>
+    <div class="line"><span class="ghost" id="ghost" aria-hidden="true"></span><span class="typed" id="typed" aria-hidden="true"></span></div>
+    <span class="sr" id="sr" aria-live="polite"></span>
+  </div>
+</aside>
+
+<script src="js/portal.js"></script>
+</body>
+</html>
