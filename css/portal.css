@@ -1,4 +1,4 @@
-/* 1. THEME: test chamber (light panels, orange + blue portals)*/
+/* 1. THEME: test chamber */
 :root{
   --orange:#FF9A00; --blue:#1EA0FF; --ink:#1B1D21; --tile:#E7EAED; --line:#CBD0D6; --muted:#5A606B;
   --hdr:56px;
@@ -6,7 +6,7 @@
   --body:"Barlow","Segoe UI",system-ui,sans-serif;
 }
 
-/* 2. BASE STYLES (tiled wall background)*/
+/* 2. BASE STYLES */
 *,*::before,*::after{box-sizing:border-box}
 [hidden]{display:none!important}
 body{margin:0;color:var(--ink);font:1.05rem/1.5 var(--body);background-color:var(--tile);
@@ -22,7 +22,7 @@ body{margin:0;color:var(--ink);font:1.05rem/1.5 var(--body);background-color:var
 .back{color:var(--orange);text-decoration:none;font:700 1.1rem var(--head);letter-spacing:.04em;padding:8px 0}
 .back:hover{color:#fff}
 
-/* 4. HERO (title between an orange and a blue portal)*/
+/* 4. HERO */
 .hero{padding:56px 0 28px}
 .hero-row{display:flex;align-items:center;gap:clamp(12px,3vw,28px)}
 .hero h1{margin:0;font:700 clamp(2.6rem,9vw,5.5rem)/1 var(--head);text-transform:uppercase;letter-spacing:.01em}
@@ -32,7 +32,7 @@ body{margin:0;color:var(--ink);font:1.05rem/1.5 var(--body);background-color:var
 .portal.blue{border-color:var(--blue);box-shadow:0 0 18px var(--blue),inset 0 0 12px var(--blue);animation-delay:-1.6s}
 @keyframes portal{50%{transform:scaleY(1.07);filter:brightness(1.25)}}
 
-/* 5. CERTIFICATE GRID (9 cards)*/
+/* 5. CERTIFICATE GRID */
 main{padding-bottom:64px}
 .certs{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;list-style:none;margin:0;padding:0}
 @media (max-width:900px){.certs{grid-template-columns:repeat(2,1fr)}}
@@ -44,7 +44,7 @@ main{padding-bottom:64px}
 .cert b{display:block;margin-top:10px;font:700 1.3rem/1.2 var(--head)}
 .cert small{color:var(--muted)}
 
-/* 6. AI ASSISTANT (fixed corner: character + speech bubble) */
+/* 6. AI ASSISTANT  */
 .glados{position:fixed;z-index:70;top:calc(var(--hdr) + 18px + env(safe-area-inset-top,0px));right:14px;width:min(250px,calc(100vw - 28px));
   display:flex;flex-direction:column;align-items:flex-end;gap:10px;pointer-events:none;
   transition:top .7s cubic-bezier(.2,.8,.2,1),right .7s cubic-bezier(.2,.8,.2,1),width .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
@@ -60,7 +60,7 @@ main{padding-bottom:64px}
 .bubble::before{content:"";position:absolute;right:46px;top:-8px;border:8px solid transparent;border-top:0;border-bottom-color:var(--ink)}
 .who{display:block;margin-bottom:4px;color:var(--orange);font:700 .85rem var(--head);letter-spacing:.08em}
 .line{position:relative}
-.ghost{visibility:hidden}                     /* full text, invisible: keeps the bubble from jumping while typing */
+.ghost{visibility:hidden}           
 .typed{position:absolute;inset:0}
 .glados.speaking .typed::after{content:"_";color:var(--orange);animation:blink .6s step-end infinite}
 @keyframes blink{50%{opacity:0}}
@@ -95,4 +95,50 @@ main{padding-bottom:64px}
 @media (max-width:560px){.hero h1{font-size:clamp(1.7rem,8vw,2.4rem)}.hero-row{gap:10px}}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
+}
+
+/* 9. SIDE NAV */
+.side{--c:var(--orange);position:fixed;top:62%;z-index:45;width:96px;
+  display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 6px 14px;
+  background:var(--ink);color:#fff;border:3px solid var(--c);border-radius:6px;text-decoration:none;
+  transform:translateY(-50%);box-shadow:0 6px 20px rgba(0,0,0,.3);
+  transition:background .2s,color .2s,border-color .2s,box-shadow .2s,transform .2s}
+.side-prev{left:12px}
+.side-next{--c:var(--blue);right:12px}
+
+.side-portal{display:grid;place-items:center;width:34px;height:58px;border-radius:50%;
+  border:4px solid var(--c);box-shadow:0 0 14px var(--c),inset 0 0 10px var(--c);
+  animation:portal 3.2s ease-in-out infinite;transition:border-color .2s,box-shadow .2s}
+.side-next .side-portal{animation-delay:-1.6s}
+.side-ico{width:10px;height:15px;fill:var(--c);transition:fill .2s}
+.side-prev .side-ico{transform:scaleX(-1)}
+.side small{font:700 .8rem var(--head);letter-spacing:.14em;color:var(--c);transition:color .2s}
+.side-t{font:700 1.05rem/1.1 var(--head);text-transform:uppercase;letter-spacing:.04em;text-align:center}
+
+.side:hover,.side:focus-visible{background:var(--c);color:var(--ink);
+  transform:translateY(calc(-50% - 4px));box-shadow:0 0 0 3px var(--c),0 0 28px var(--c)}
+.side:hover .side-portal,.side:focus-visible .side-portal{border-color:var(--ink);box-shadow:none}
+.side:hover .side-ico,.side:focus-visible .side-ico{fill:var(--ink)}
+.side:hover small,.side:focus-visible small{color:var(--ink)}
+
+/* medium screens: bottom corners (the assistant lives top right) */
+@media (min-width:721px) and (max-width:1300px){
+  .side{top:auto;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:none;width:auto;
+    flex-direction:row;gap:10px;padding:8px 14px}
+  .side:hover,.side:focus-visible{transform:translateY(-4px)}
+  .side small{display:none}
+  .side-portal{width:22px;height:36px;border-width:3px}
+  .side-prev{left:16px}
+  .side-next{right:16px}
+  main{padding-bottom:120px}
+}
+
+/* phones: small portal buttons inside the top bar, since the assistant docks at the bottom */
+@media (max-width:720px){
+  .side{top:calc(5px + env(safe-area-inset-top,0px));bottom:auto;transform:none;z-index:41;width:auto;padding:4px 8px}
+  .side:hover,.side:focus-visible{transform:none}
+  .side small,.side-t{display:none}
+  .side-portal{width:20px;height:32px;border-width:3px}
+  .side-prev{left:auto;right:64px}
+  .side-next{right:12px}
 }

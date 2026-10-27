@@ -1,4 +1,4 @@
-/* 1. FONT (put the file at fonts/VCR_OSD_MONO_1.001.ttf)*/
+/* 1. FONT */
 @font-face{font-family:"VCR OSD Mono";src:local("VCR OSD Mono"),url("../fonts/VCR_OSD_MONO_1.001.ttf") format("truetype");font-display:swap}
 
 /* 2. THEME + PAGE: dark steel, blood red, warning yellow*/
@@ -6,8 +6,8 @@
   --bg:#0A0A0B; --panel:#121214; --ink:#F2F2F2; --muted:#9A9AA3;
   --red:#E5251B; --red-d:#7A1410; --yellow:#FFD400; --steel:#4A4A52;
   --font:"VCR OSD Mono","Courier New",monospace;
-  --cw:260px; --ch:340px;   /* card size */
-  --k:1;                    /* ring scale (set by JavaScript to fit the screen) */
+  --cw:260px; --ch:340px;
+  --k:1; 
 }
 *,*::before,*::after{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -68,7 +68,7 @@ h1::after{color:#fff;animation:gB 5s steps(1) infinite .12s}
 .counter{min-width:150px}
 .hint{margin:6px 0 0;text-align:center;color:var(--muted);font-size:.8rem}
 
-/* 7. FLOOR + SLIDING ROBOT (follows the selected project)*/
+/* 7. FLOOR + SLIDING ROBOT */
 .track{position:relative;height:96px;margin-top:4px;cursor:pointer;touch-action:pan-y;user-select:none;-webkit-user-select:none}
 .rail{position:absolute;left:44px;right:44px;bottom:16px;height:0}
 .rail::before{content:"";position:absolute;left:0;right:0;bottom:-14px;height:14px;background:#000;border:2px solid var(--steel)}
@@ -157,3 +157,34 @@ h1::after{color:#fff;animation:gB 5s steps(1) infinite .12s}
 
 body{height:100dvh;min-height:0;overflow:hidden}
 .stage{min-height:180px}
+
+/* 11. SIDE NAV */
+.side{position:fixed;top:50%;z-index:45;width:96px;
+  display:flex;flex-direction:column;align-items:center;gap:8px;padding:20px 6px 14px;
+  background:var(--panel);color:var(--ink);border:4px solid var(--red);box-shadow:6px 6px 0 var(--red-d);
+  text-decoration:none;text-transform:uppercase;transform:translateY(-50%)}
+.side::before{content:"";position:absolute;left:0;right:0;top:0;height:8px;
+  background:repeating-linear-gradient(-45deg,var(--yellow) 0 6px,#000 6px 12px)}
+.side-prev{left:14px}
+.side-next{right:14px}
+
+.side-ico{width:20px;height:36px;fill:var(--yellow);shape-rendering:crispEdges}
+.side-prev .side-ico{transform:scaleX(-1)}
+.side small{color:var(--muted);font-size:.8rem;letter-spacing:.12em}
+.side-t{font-size:1.15rem;line-height:1.1;text-align:center}
+
+.side:hover,.side:focus-visible{background:var(--red);color:#000}
+.side:hover .side-ico,.side:focus-visible .side-ico{fill:#000}
+.side:hover small,.side:focus-visible small{color:#000}
+.side:active{transform:translate(3px,calc(-50% + 3px));box-shadow:2px 2px 0 var(--red-d)}
+
+/* narrower screens: small arrow-only buttons in the top bar, top right */
+@media (max-width:1300px){
+  .side{top:calc(5px + env(safe-area-inset-top,0px));width:44px;height:30px;padding:0;flex-direction:row;
+    justify-content:center;transform:none;box-shadow:3px 3px 0 var(--red-d);border-width:3px}
+  .side::before,.side small,.side-t{display:none}
+  .side-ico{width:9px;height:16px}
+  .side-prev{left:auto;right:66px}
+  .side-next{right:14px}
+  .side:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--red-d)}
+}
